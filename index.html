@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8"/>
+<title></title>
+<style>
+*,html{
+	padding: 0;
+	margin: 0;
+}
+#content_box {
+	width: 500px;
+	height: 500px;
+	margin: 0 auto;
+	border: 1px solid #bbb;
+}
+
+#rows li {
+	float: left;
+	width: 120px;
+	height: 120px;
+	text-align: center;
+	font-size: 32pt;
+	list-style: none;
+	border: 1px solid #bbb;
+}
+</style>
+</head>
+<body>
+<div id="content_box">
+	<ul id="rows">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<script>
+	var initArray = [2,4];
+	var boxList = new Array();
+	for(var i = 0; i < 4; i++){
+		boxList[i] = new Array(4);
+	}
+	var listArray = document.getElementsByTagName("li");
+	
+	// 初始化
+	function init() {
+		var random = Math.floor(Math.random() * 5 / 3);
+		var initX = Math.floor(Math.random() * 4),initY = Math.floor(Math.random() * 4);
+		//alert(initX + "," + initY + "=========" + initArray[random]);
+		var box = boxList[initX][initY];
+		if(box == undefined || box == ''){
+			boxList[initX][initY] = initArray[random];
+		}
+	}
+	
+	// 显示结果
+	function showBoxs(){
+		for(var i = 0; i < 4; i++) {
+			for(var j = 0; j < boxList[i].length; j++){
+				var val = "";
+				if(boxList[i][j] !== undefined){
+					val = boxList[i][j];
+				}
+				listArray[i * 4 + j].innerHTML = val;
+			}
+		}
+	}
+	
+	function _up() {
+		console.info("up");
+	}
+	
+	function _left() {
+		console.info("left");
+		
+	}
+	
+	function _right() {
+		console.info("right");
+	}
+	
+	function _down() {
+		console.info("down");
+	}
+	
+	// 键盘事件监听,up:119,left:97,down:115,right:100
+	document.onkeypress = function(event){
+		switch(event.which){
+			case 119:
+				_up();
+				break;
+			case 97:
+				_left();
+				break;
+			case 115:
+				_down();
+				break;
+			case 100:
+				_right();
+				break;
+		}
+	};
+	
+	(function(){
+		init();
+		init();
+		showBoxs();
+	})();
+</script>
+</body>
+</html>
